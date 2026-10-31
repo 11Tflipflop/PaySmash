@@ -1,0 +1,16 @@
+# just the database. run the Go programs on your machine.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: pay
+      POSTGRES_PASSWORD: pay
+      POSTGRES_DB: payengine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
